@@ -1,0 +1,34 @@
+set std_lib_path {/proj1/dataIn/Rock_R2G/TSMC_28nm_collaterals/std_cells_and_memory/tsmc28nm_9track_hvt_BE_FE/TSMCHOME/digital/Front_End/timing_power_noise/CCS/tcbn28hpcplusbwp30p140hvt_180a/}
+set macro1 {/proj1/dataIn/Rock_R2G/TSMC_28nm_collaterals/std_cells_and_memory/tsdn28hpcpuhdb4096x33m4mwa_170a/NLDM/}
+set macro2 {/proj1/dataIn/Rock_R2G/TSMC_28nm_collaterals/std_cells_and_memory/ts1n28hpcpuhdhvtb2048x129m4swbso_170a/NLDM/}
+
+#set link_library "[sh find $std_lib_path -name "*.db"] [sh find $macro1 -name "*.db"] [sh find $macro2 -name "*.db"]"
+
+set link_library "[sh find $std_lib_path -name "*ssg0p81vm40c*.db"] [sh find $macro1 -name "*ssg0p81vm40c*.db"] [sh find $macro2 -name "*ssg0p81vm40c*.db"]"
+set target_library "[sh find $std_lib_path -name "*ssg0p81vm40c*.db"]"
+#[sh find $macro1 -name "*ssg0p81vm40c*.db"] [sh find $macro2 -name "*ssg0p81vm40c*.db"]"
+
+
+set REPOROOT /proj1/dataIn/Rock_R2G/release_10_3_2021/senUintah_02_10_21-17_59_44/senUintah
+set local $REPOROOT/local
+set sequencer $REPOROOT/sequencer
+set adc_postproc $REPOROOT/adc_postproc
+set analog_config $REPOROOT/analog_config
+set test_mux $REPOROOT/test_mux
+set arbiter $REPOROOT/arbiter
+set fifo $REPOROOT/fifo
+set interrupt_gen $REPOROOT/interrupt_gen
+set spi_slave $REPOROOT/spi_slave
+set interfaces $REPOROOT/interfaces
+set common $REPOROOT/common
+set opa_wfm_gen $REPOROOT/opa_wfm_gen
+set host_bus_interconnect $REPOROOT/host_bus_interconnect
+set top $REPOROOT/top
+set tia_offset_cancel $REPOROOT/tia_offset_cancel
+#acs_read_hdl -hdl_source /home/guepd010062susdp22/jyothsna/top.f
+#elaborate rp_top_top
+#read_file -recursive $REPOROOT -autoread -top rp_top_top
+read_file -recursive $REPOROOT -autoread top.f
+elaborate rp_top_top
+read_sdc /home/guepd010066susdp22/Desktop/sta/alu/work/top.sdc
+compile 
